@@ -23,20 +23,14 @@
         position: relative;
         z-index: 100;
 
-        img {
-            border-radius: 3rem;
-            width: 3rem;
-            height: 3rem;
-        }
-
         &__logo {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
             text-decoration: none;
             color: $primary;
             background: transparent;
             border-radius: 4rem;
-            width: 9rem;
+            width: 12rem;
             height: 3rem;
             display: flex;
             justify-content: center;
@@ -44,8 +38,20 @@
             text-align: center;
             transition: 0.3s ease all;
 
+            p {
+                background-image: linear-gradient(to right, $primary 60%, $light 30%);
+                color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+                transition: 1s ease all;
+            }
+
             &:hover {
                 color: $light;
+                p {
+                    color: rgba($light, 0.95);
+                    background: transparent;
+                }
             }
         }
 

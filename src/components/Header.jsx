@@ -50,7 +50,9 @@ const Header = () => {
                             <Link to='/page_one'>О нас</Link>
                         </li>
                         <li>
-                            <Link to='/page_two'>Тренерский состав</Link>
+                            <div className="linkLayout">
+                                <Link to='/page_two'>Тренерский состав</Link>
+                            </div>
                         </li>
                         <li>
                             <Link to='/page_three'>Секции</Link>

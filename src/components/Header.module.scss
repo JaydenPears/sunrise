@@ -5,7 +5,6 @@
     background-color: $dark;
     width: 100%;
     height: $headerHeight;
-    padding: 0 1.5rem;
     @include breakpoint(md) {
         padding: 0 3rem;
     }
@@ -107,10 +106,13 @@
                         font-size: 1rem;
                         text-decoration: none;
                         color: inherit;
-                        padding: 0.75rem 1.25rem;
+                        padding: 0.5rem 1rem;
+                        margin-left: 10px;
+                        box-sizing: border-box;
+                        display: inline-block;
                         border-radius: $borderRadius;
                         transition: 0.3s ease all;
-                        font-weight: 600;
+                        font-weight: 500;
     
                         &:hover {
                             background: rgba($light, 0.1);

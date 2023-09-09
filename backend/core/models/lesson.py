@@ -5,7 +5,7 @@ from .group import SectionGroup
 
 class Lesson(models.Model):
     Group = models.ForeignKey(to=SectionGroup, related_name='lessons', null=True, on_delete=models.SET_NULL)
-    date = models.DateTimeField(_('Date and time'))
+    date = models.DateField(_('Date'))
     start_time = models.TimeField(_('Start time'))
     end_time = models.TimeField(_('End time'))
 

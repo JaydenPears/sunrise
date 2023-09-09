@@ -11,7 +11,7 @@ class Post(models.Model):
     title = models.CharField(_('Title'), max_length=100)
     description = models.CharField(_('Description'), max_length=300)
     short_description = models.CharField(_('Short description'), max_length=300)
-    image = models.ImageField(_('Image'))
+    image = models.ImageField(_('Image'), blank=True)
     date = models.DateTimeField(_('Date and time'))
     created_time = models.DateTimeField(_('Created time'), auto_now_add=True)
     category = models.CharField(_('Category'), choices=Category.choices, default=Category.POST, max_length=50)

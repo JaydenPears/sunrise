@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backend.core.models import ClubInfo, Personal, Section, Post, Partner, Lesson, SectionGroup
+from .models import ClubInfo, Personal, Section, Post, Partner, Lesson, SectionGroup
 
 
 class ClubInfoSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backend.core.models import ClubInfo, Trainer, Section, Post, Partner, Management, Lesson, SectionGroup
+from backend.core.models import ClubInfo, Personal, Section, Post, Partner, Lesson, SectionGroup
 
 
 class ClubInfoSerializer(serializers.ModelSerializer):
@@ -17,12 +17,6 @@ class SectionGroupSerializer(serializers.ModelSerializer):
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = '__all__'
-
-
-class ManagementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Management
         fields = '__all__'
 
 
@@ -45,9 +39,9 @@ class SectionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TrainerSerializer(serializers.ModelSerializer):
+class PersonalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Trainer
+        model = Personal
         fields = '__all__'
 
 

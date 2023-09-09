@@ -1,9 +1,9 @@
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
 
-from backend.core.models import ClubInfo, SectionGroup, Lesson, Management, Partner, Post, Section, Trainer
-from backend.core.serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, ManagementSerializer, \
-    PartnerSerializer, PostSerializer, SectionSerializer, TrainerSerializer
+from backend.core.models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal
+from backend.core.serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer,\
+    PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer
 
 
 class ClubInfoViewSet(mixins.ListModelMixin):
@@ -24,11 +24,6 @@ class LessonViewSet(mixins.ListModelMixin, GenericViewSet):
         return super().get_queryset().select_related('group')
 
 
-class ManagementViewSet(mixins.ListModelMixin):
-    serializer_class = ManagementSerializer
-    queryset = Management.objects.all()
-
-
 class PartnerViewSet(mixins.ListModelMixin):
     serializer_class = PartnerSerializer
     queryset = Partner.objects.all()
@@ -47,9 +42,9 @@ class SectionViewSet(mixins.ListModelMixin, GenericViewSet):
         return super().get_queryset().prefetch_related('trainers', 'groups')
 
 
-class TrainerViewSet(mixins.ListModelMixin, GenericViewSet):
-    serializer_class = TrainerSerializer
-    queryset = Trainer.objects.all()
+class PersonalViewSet(mixins.ListModelMixin, GenericViewSet):
+    serializer_class = PersonalSerializer
+    queryset = Personal.objects.all()
 
     def get_queryset(self):
         return super().get_queryset().select_related('Section')

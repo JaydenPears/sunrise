@@ -1,6 +1,5 @@
 from .section import Section
 from .management import Management
-from .afisha import Afisha
 from .clubinfo import ClubInfo
 from .group import SectionGroup
 from .lesson import Lesson

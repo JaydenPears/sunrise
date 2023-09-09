@@ -5,7 +5,7 @@ from .section import Section
 
 class SectionGroup(models.Model):
     title = models.CharField(_('Title'), max_length=100)
-    Section = models.ManyToManyField(to=Section, related_name='Section')
+    Section = models.ManyToManyField(to=Section, related_name='groups')
 
     class Meta:
         verbose_name = _('Group')

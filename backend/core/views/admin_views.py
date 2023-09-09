@@ -2,8 +2,8 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import GenericViewSet
 
-from backend.core.models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal
-from backend.core.serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, \
+from ..models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal
+from ..serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, \
     PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer
 
 
@@ -34,7 +34,7 @@ class LessonAdminViewSet(BaseAdminModelViewSet):
     queryset = Lesson.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('group')
+        return super().get_queryset().select_related('Group')
 
 
 class PartnerAdminViewSet(BaseAdminModelViewSet):
@@ -64,5 +64,5 @@ class PersonalAdminViewSet(BaseAdminModelViewSet):
     queryset = Personal.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('Section')
+        return super().get_queryset().prefetch_related('Section')
 

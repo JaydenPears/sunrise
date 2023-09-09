@@ -2,9 +2,9 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import GenericViewSet
 
-from backend.core.models import ClubInfo, SectionGroup, Lesson, Management, Partner, Post, Section, Trainer
-from backend.core.serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, ManagementSerializer, \
-    PartnerSerializer, PostSerializer, SectionSerializer, TrainerSerializer
+from backend.core.models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal
+from backend.core.serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, \
+    PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer
 
 
 class BaseAdminModelViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
@@ -37,12 +37,6 @@ class LessonAdminViewSet(BaseAdminModelViewSet):
         return super().get_queryset().select_related('group')
 
 
-class ManagementAdminViewSet(BaseAdminModelViewSet):
-    permission_classes = (IsAuthenticated, IsAdminUser)
-    serializer_class = ManagementSerializer
-    queryset = Management.objects.all()
-
-
 class PartnerAdminViewSet(BaseAdminModelViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser)
     serializer_class = PartnerSerializer
@@ -64,10 +58,10 @@ class SectionAdminViewSet(BaseAdminModelViewSet):
         return super().get_queryset().prefetch_related('trainers', 'groups')
 
 
-class TrainerAdminViewSet(BaseAdminModelViewSet):
+class PersonalAdminViewSet(BaseAdminModelViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser)
-    serializer_class = TrainerSerializer
-    queryset = Trainer.objects.all()
+    serializer_class = PersonalSerializer
+    queryset = Personal.objects.all()
 
     def get_queryset(self):
         return super().get_queryset().select_related('Section')

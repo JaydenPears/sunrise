@@ -31,7 +31,7 @@ class LessonViewSet(BaseCommonModelViewSet):
     queryset = Lesson.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('group')
+        return super().get_queryset().select_related('group', 'section')
 
 
 class PartnerViewSet(BaseCommonModelViewSet):

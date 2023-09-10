@@ -6,7 +6,7 @@ from ..serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSeri
     PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer
 
 
-class BaseCommonModelViewSet(mixins.ListModelMixin, GenericViewSet):
+class BaseCommonModelViewSet(mixins.ListModelMixin, GenericViewSet, mixins.RetrieveModelMixin):
     """
     A viewset that provides default `list()`action.
     """
@@ -22,13 +22,16 @@ class SectionGroupViewSet(BaseCommonModelViewSet):
     serializer_class = SectionGroupSerializer
     queryset = SectionGroup.objects.all()
 
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related('section')
+
 
 class LessonViewSet(BaseCommonModelViewSet):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('Group')
+        return super().get_queryset().select_related('group')
 
 
 class PartnerViewSet(BaseCommonModelViewSet):
@@ -46,7 +49,7 @@ class SectionViewSet(BaseCommonModelViewSet):
     queryset = Section.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('trainers', 'groups')
+        return super().get_queryset().prefetch_related('personal')
 
 
 class PersonalViewSet(BaseCommonModelViewSet):
@@ -54,5 +57,5 @@ class PersonalViewSet(BaseCommonModelViewSet):
     queryset = Personal.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('Section')
+        return super().get_queryset().prefetch_related('section', 'job')
 

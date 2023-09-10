@@ -5,5 +5,5 @@ from ..models import Lesson
 
 @admin.register(Lesson)
 class LessonModelAdmin(admin.ModelAdmin):
-    list_display = ('Group', 'date', 'start_time', 'end_time')
+    list_display = ('group', 'date', 'start_time', 'end_time')
     fields = list_display

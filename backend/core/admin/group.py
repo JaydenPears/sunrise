@@ -6,5 +6,5 @@ from ..models import SectionGroup
 @admin.register(SectionGroup)
 class SectionGroupModelAdmin(admin.ModelAdmin):
     list_display = ('title', )
-    fields = ('title', 'Section')
-    filter_horizontal = ('Section',)
+    fields = ('title', 'section')
+    filter_horizontal = ('section',)

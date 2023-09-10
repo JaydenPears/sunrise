@@ -4,7 +4,7 @@ from .group import SectionGroup
 
 
 class Lesson(models.Model):
-    Group = models.ForeignKey(to=SectionGroup, related_name='lessons', null=True, on_delete=models.SET_NULL)
+    group = models.ForeignKey(to=SectionGroup, related_name='lessons', null=True, on_delete=models.SET_NULL)
     date = models.DateField(_('Date'))
     start_time = models.TimeField(_('Start time'))
     end_time = models.TimeField(_('End time'))
@@ -15,4 +15,4 @@ class Lesson(models.Model):
         ordering = ('id',)
 
     def __str__(self):
-        return f'Group {self.Group}, Date: {self.date}'
+        return f'Group {self.group}, Date: {self.date}'

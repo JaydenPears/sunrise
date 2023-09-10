@@ -18,10 +18,11 @@ class SectionGroupSerializer(serializers.ModelSerializer):
 
 class LessonSerializer(serializers.ModelSerializer):
     group = serializers.StringRelatedField(many=False)
+    section = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = Lesson
-        fields = ('group', 'date', 'start_time', 'end_time')
+        fields = ('group', 'section', 'date', 'start_time', 'end_time')
 
 
 class PartnerSerializer(serializers.ModelSerializer):

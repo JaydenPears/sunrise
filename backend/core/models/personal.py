@@ -16,7 +16,7 @@ class Personal(models.Model):
     vk_id = models.CharField(_('VK id'), max_length=100, blank=True)
     tg_id = models.CharField(_('Telegram id'), max_length=100, blank=True)
     description = models.CharField(_('Description'), max_length=300)
-    image = models.ImageField(_('Image'), blank=True, upload_to='media/')
+    image = models.ImageField(_('Image'), blank=True, upload_to='images/')
     phone = models.CharField(_('Phone number'), max_length=100)
     job = models.ManyToManyField(to=Job, related_name='personal')
 

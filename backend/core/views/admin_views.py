@@ -27,6 +27,9 @@ class SectionGroupAdminViewSet(BaseAdminModelViewSet):
     serializer_class = SectionGroupSerializer
     queryset = SectionGroup.objects.all()
 
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related('section')
+
 
 class LessonAdminViewSet(BaseAdminModelViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser)
@@ -34,7 +37,7 @@ class LessonAdminViewSet(BaseAdminModelViewSet):
     queryset = Lesson.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('Group')
+        return super().get_queryset().select_related('group', 'section')
 
 
 class PartnerAdminViewSet(BaseAdminModelViewSet):
@@ -55,7 +58,7 @@ class SectionAdminViewSet(BaseAdminModelViewSet):
     queryset = Section.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('trainers', 'groups')
+        return super().get_queryset().prefetch_related('personal')
 
 
 class PersonalAdminViewSet(BaseAdminModelViewSet):
@@ -64,5 +67,5 @@ class PersonalAdminViewSet(BaseAdminModelViewSet):
     queryset = Personal.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('Section')
+        return super().get_queryset().prefetch_related('section', 'job')
 

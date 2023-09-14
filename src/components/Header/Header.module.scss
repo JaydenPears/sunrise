@@ -14,13 +14,14 @@
     transition: all 0.5s ease;
 
     @include breakpoint(md) {
-        padding: 0 3rem;
+        padding: 0 1.5rem;
     }
 
     &__menu {
         @include breakpoint(md) {
             display: none;
         }
+
         &__toggle {
             color: $white;
             position: relative;

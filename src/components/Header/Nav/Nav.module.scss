@@ -24,6 +24,7 @@
                 text-decoration: none;
                 color: $white;
                 position: relative;
+                text-transform: uppercase;
 
                 &::after {
                     content: "";
@@ -73,6 +74,7 @@
             a {
                 text-decoration: none;
                 color: $white;
+                text-transform: uppercase;
 
                 &:hover {
                     color: $white;

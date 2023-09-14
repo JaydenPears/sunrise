@@ -14,7 +14,7 @@ const HomePageContent = () => {
                 Спортивный клуб твоей мечты
             </span>
             <p className={classes.hero__content__description}>
-                У нас присутствует много различных секций, а в коллективах процветает командный дух.<br/>Всё на твой вкус!
+                У нас присутствует много различных секций, <br />а в коллективах процветает командный дух.<br/>Всё на твой вкус!
             </p>
             <div className={classes.hero__content__cta}>
                 <Button to="/contact_us">Присоединяйся!</Button>

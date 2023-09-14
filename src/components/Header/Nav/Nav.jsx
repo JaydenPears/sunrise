@@ -11,20 +11,17 @@ const Nav = ({ isMenu, menuToggle }) => {
         <nav className={isMenu ? classes.menu__nav : classes.nav}>
             <ul>
                 <li onClick={menuToggle}>
-                    <Link to="/about_us">О нас</Link>
+                    <Link to="/about_us" style={{textWrap: "nowrap"}}>О нас</Link>
                 </li>
                 <li onClick={menuToggle}>
                     <Link to="/news">Новости</Link>
-                </li>
-                <li onClick={menuToggle}>
-                    <Link to="/trainers">Тренерский состав</Link>
                 </li>
                 <li onClick={menuToggle}>
                     <Link to="/sections">Секции</Link>
                 </li>
             </ul>
             <Button to="/contact_us" className={classes.contact_us} onClick={menuToggle}>
-                Связаться с нами
+                Связаться
             </Button>
         </nav>
     );

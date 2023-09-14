@@ -6,7 +6,6 @@ import ContactUs from './pages/ContactUs';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import News from './pages/News';
-import Trainers from './pages/Trainers';
 import Sections from './pages/Sections';
 import Post from './pages/Post';
 
@@ -17,7 +16,6 @@ function App() {
             <Routes>
                 <Route path="/news" element={<News />}/>
                 <Route path="/contact_us" element={<ContactUs />}/>
-                <Route path="/trainers" element={<Trainers />}/>
                 <Route path="/about_us" element={<AboutUs />}/>
                 <Route path="/sections" element={<Sections />}/>
                 <Route exact path="/" element={<Home />}/>

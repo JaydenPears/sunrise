@@ -1,31 +1,31 @@
-// import libs:
-import React from 'react';
+import { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import { arrayRoutes } from "./router";
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import ContactUs from './pages/ContactUs';
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
+import News from './pages/News';
+import Trainers from './pages/Trainers';
+import Sections from './pages/Sections';
+import Post from './pages/Post';
 
-// import static:
-import './static/styles/index.scss';
-import classess from './static/styles/App.module.scss';
-
-const App = () => {
+function App() {
     return (
-        <div style={{display: "flex", flexDirection: "column"}}>
-            <Header/>
-            <div className={classess.container}>
-                <Routes>
-                    {arrayRoutes.map(route => 
-                        <Route
-                            key={route.id}
-                            path={route.path}
-                            element={route.element}
-                            exact={route.exact}
-                        />    
-                    )}
-                </Routes>
-            </div>
-        </div>
-    )
-};
+        <Fragment>
+            <Header />
+            <Routes>
+                <Route path="/news" element={<News />}/>
+                <Route path="/contact_us" element={<ContactUs />}/>
+                <Route path="/trainers" element={<Trainers />}/>
+                <Route path="/about_us" element={<AboutUs />}/>
+                <Route path="/sections" element={<Sections />}/>
+                <Route exact path="/" element={<Home />}/>
+                <Route path="/news/:id" element={<Post />}/>
+            </Routes>
+            <Footer />
+        </Fragment>
+    );
+}
 
 export default App;

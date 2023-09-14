@@ -1,0 +1,33 @@
+@import "./../../styles/variables.scss";
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: $primary;
+    background: transparent;
+    border-radius: 4rem;
+    width: 12rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: 1s;
+    margin-right: 10px;
+
+    p {
+        background-image: linear-gradient(40deg, $primary 55%, $light 45%);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: 1s;
+    }
+
+    &:hover {
+        color: $light;
+        p {
+            color: rgba($light, 0.95);
+        }
+    }
+}

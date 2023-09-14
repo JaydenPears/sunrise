@@ -1,25 +1,21 @@
 // import libs:
 import React, { Fragment } from 'react';
 import Hero from '../components/Hero/Hero';
-import Locations from '../components/Posts/Posts';
-import Message from '../components/Message/Message';
-import { Helmet } from 'react-helmet';
 import useScrollToTop from '../hooks/useScrollToTop';
+import { Helmet } from 'react-helmet';
 
-const Home = () => {
+const ContactUs = () => {
     useScrollToTop();
     return (
         <Fragment>
             <Helmet>
                 <title>
-                    Спортивный клуб "Восход"
+                    Связаться с нами
                 </title>
             </Helmet>
-            <Hero />
-            <Message />
-            <Locations />
+            <Hero isDynamic>Связаться с нами</Hero>
         </Fragment>
     );
 };
 
-export default Home;
+export default ContactUs;

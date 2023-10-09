@@ -23,3 +23,5 @@ yarn-error.log*
 
 venv
 __pycache__
+.vscode
+manga.py

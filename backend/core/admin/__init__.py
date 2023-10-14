@@ -9,5 +9,6 @@ from .personal import PersonalModelAdmin
 from .post import PostModelAdmin
 from .section import SectionModelAdmin
 from .job import JobModelAdmin
+from .periodiclesson import PeriodicLessonModelAdmin
 
 admin.site.register(LogEntry)

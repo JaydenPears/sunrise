@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ClubInfo, Personal, Section, Post, Partner, Lesson, SectionGroup, Job
+from .models import ClubInfo, Personal, Section, Post, Partner, Lesson, SectionGroup, PeriodicLesson
 
 
 class ClubInfoSerializer(serializers.ModelSerializer):
@@ -17,12 +17,19 @@ class SectionGroupSerializer(serializers.ModelSerializer):
 
 
 class LessonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Lesson
+        fields = ('group', 'section', 'date', 'start_time', 'end_time', 'periodic_id')
+
+
+class PeriodicLessonSerializer(serializers.ModelSerializer):
     group = serializers.StringRelatedField(many=False)
     section = serializers.StringRelatedField(many=False)
 
     class Meta:
-        model = Lesson
-        fields = ('group', 'section', 'date', 'start_time', 'end_time')
+        model = PeriodicLesson
+        fields = ('group', 'section', 'day', 'start_time', 'end_time', 'start_date', 'end_date')
 
 
 class PartnerSerializer(serializers.ModelSerializer):

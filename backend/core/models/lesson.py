@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from . import Section
 from .group import SectionGroup
+from .periodiclesson import PeriodicLesson
 
 
 class Lesson(models.Model):
@@ -11,6 +12,8 @@ class Lesson(models.Model):
     date = models.DateField(_('Date'))
     start_time = models.TimeField(_('Start time'))
     end_time = models.TimeField(_('End time'))
+
+    periodic_id = models.ForeignKey(to=PeriodicLesson, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Lesson')

@@ -1,10 +1,12 @@
+import datetime
+
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import GenericViewSet
-
-from ..models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal
+from django.db import transaction
+from ..models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal, PeriodicLesson
 from ..serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, \
-    PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer
+    PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer, PeriodicLessonSerializer
 
 
 class BaseAdminModelViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
@@ -35,6 +37,14 @@ class LessonAdminViewSet(BaseAdminModelViewSet):
     permission_classes = (IsAuthenticated, IsAdminUser)
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('group', 'section')
+
+class PeriodicLessonAdminViewSet(BaseAdminModelViewSet):
+    permission_classes = (IsAuthenticated, IsAdminUser)
+    serializer_class = PeriodicLessonSerializer
+    queryset = PeriodicLesson.objects.all()
 
     def get_queryset(self):
         return super().get_queryset().select_related('group', 'section')

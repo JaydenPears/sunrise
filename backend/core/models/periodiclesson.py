@@ -8,13 +8,13 @@ from .group import SectionGroup
 
 
 class DayOfWeak(models.TextChoices):
-    MN = 0, _('понедельник')
-    TU = 1, _('вторник')
-    WN = 2, _('среда')
-    TH = 3, _('четверг')
-    FR = 4, _('пятница')
-    ST = 5, _('суббота')
-    SU = 6, _('воскресение')
+    MN = 0, _('Понедельник')
+    TU = 1, _('Вторник')
+    WN = 2, _('Среда')
+    TH = 3, _('Четверг')
+    FR = 4, _('Пятница')
+    ST = 5, _('Суббота')
+    SU = 6, _('Воскресенье')
 
 
 class PeriodicLesson(models.Model):

@@ -1,7 +1,11 @@
+// import libs:
 import React, { Fragment } from 'react';
-import Hero from '../components/Hero/Hero';
 import useScrollToTop from '../hooks/useScrollToTop';
 import { Helmet } from 'react-helmet';
+
+// import static:
+import classess from './../styles/Sections.module.scss';
+import MySelect from '../components/MySelect/MySelect';
 
 const Sections = () => {
     useScrollToTop();
@@ -12,9 +16,12 @@ const Sections = () => {
                     Наши секции
                 </title>
             </Helmet>
-            <Hero isDynamic>
-                Наши секции
-            </Hero>
+            <div className={classess.container}>
+                <h1>
+                    Наши секции
+                </h1>
+                <MySelect/>
+            </div>
         </Fragment>
     );
 };

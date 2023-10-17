@@ -1,31 +1,29 @@
 // import libs:
-import React, { useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import Select from 'react-select';
 
 // import static:
 import classess from './MySelect.module.scss';
  
-const MySelect = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
- 
+const MySelect = ({options, parentCallback, placeholder}) => {
+    const [selectOptions, setSelectOptions] = useState(null);
+
     const handleChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
-        console.log(`Option selected:`, selectedOption);
+        parentCallback(selectedOption["value"]);
     };
- 
-    const options = [
-        { value: 'helene', label: 'Helene' },
-        { value: 'berline', label: 'Berline' },
-        { value: 'selene', label: 'Selene' }
-    ];
+
+    useEffect(() => {
+        setSelectOptions(null);
+        setSelectOptions(options);
+    }, [options]);
  
     return (
         <div>
             <div className={classess.select}>
                 <Select
-                    options={options}
+                    options={selectOptions}
                     onChange={handleChange}
-                    placeholder="Favourite artists"
+                    placeholder={placeholder}
                     isSearchable={false}
                     theme={(theme) => ({
                         ...theme,

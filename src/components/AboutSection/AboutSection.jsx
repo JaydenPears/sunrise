@@ -2,9 +2,9 @@
 import React from 'react';
 
 // import static & assets:
-import classess from './Message.module.scss';
+import classess from './AboutSection.module.scss';
 
-const Message = ({name, post, description, image}) => {
+const AboutSection = ({name, post, description, image}) => {
     return (
         <div className={classess.container}>
             <div className={classess.message}>
@@ -36,4 +36,4 @@ const Message = ({name, post, description, image}) => {
     )
 };
 
-export default Message;
+export default AboutSection;

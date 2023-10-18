@@ -1,0 +1,89 @@
+@import "./../../styles/variables.scss";
+
+.container {
+    background: $light;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+.message {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__title {
+        color: $dark;
+        font-size: 2rem;
+        letter-spacing: $letterSpacing;
+        font-weight: 900;
+        position: relative;
+        margin-bottom: $spacing-xl;
+    }
+
+    &__content {
+        margin: 0 1.5rem;
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__card {
+        position: relative;
+        border-radius: $borderRadius;
+        border: 2px solid $white;
+        transition: 0.3s ease all;
+        box-shadow: $boxShadow;
+
+        &__img {
+            width: auto;
+            height: auto;
+        }
+
+        &__text {
+            color: $dark;
+            font-size: 2rem;
+            letter-spacing: $letterSpacing;
+            font-weight: 900;
+            position: relative;
+
+            &__decoration {
+                color: rgba($dark, 0.9);
+                font-size: 1.5rem;
+                letter-spacing: $letterSpacing;
+                font-weight: 900;
+                position: relative;
+                text-decoration: underline;
+                text-decoration-color: $primary;
+            }
+        }
+        
+        img {
+            border: 2px solid $primary;
+            border-radius: 50%;
+            height: 8rem;
+            margin-right: 10px;
+            object-fit: cover;
+            width: 8rem;
+        }
+
+        &__title {
+            margin: 0.5rem 1.5rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__description {
+            color: rgba($dark, 0.9);
+            text-align: justify;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 1rem;
+            text-indent: 50px;
+        }
+    }
+}

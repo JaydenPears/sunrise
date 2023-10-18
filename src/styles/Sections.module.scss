@@ -1,0 +1,24 @@
+@import "./variables.scss";
+
+.container {
+    background: $light;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    padding-top: $headerHeight;
+    min-height: calc(100vh - #{$headerHeight} - 10px);
+    flex-direction: column;
+
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+        padding-top: 15px;
+        font-size: 2.2rem;
+        font-weight: 800;
+        text-decoration: none;
+    }
+}
+

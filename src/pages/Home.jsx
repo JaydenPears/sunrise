@@ -6,6 +6,9 @@ import Message from '../components/Message/Message';
 import { Helmet } from 'react-helmet';
 import useScrollToTop from '../hooks/useScrollToTop';
 
+// import assets:
+import photo from './../assets/trainer.jpg';
+
 const Home = () => {
     useScrollToTop();
     return (
@@ -16,7 +19,12 @@ const Home = () => {
                 </title>
             </Helmet>
             <Hero />
-            <Message />
+            <Message
+                name="Даниил Давыдов"
+                post="Директор АНО СК ВОСХОД"
+                description=""
+                image={photo}
+            />
             <Locations />
         </Fragment>
     );

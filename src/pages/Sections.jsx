@@ -2,10 +2,10 @@
 import { React, Fragment, useState, useEffect } from 'react';
 import useScrollToTop from '../hooks/useScrollToTop';
 import { Helmet } from 'react-helmet';
+import Select from 'react-select';
 
 // import static:
 import classess from './../styles/Sections.module.scss';
-import MySelect from '../components/MySelect/MySelect';
 
 const Sections = () => {
     useScrollToTop();
@@ -14,6 +14,7 @@ const Sections = () => {
 
     const setNewSection = (newSection) => {
         setSection(newSection);
+        setGroup(null);
     };
 
     const setNewGroup = (newGroup) => {
@@ -21,7 +22,7 @@ const Sections = () => {
     };
 
     useEffect(() => {
-        // console.log(section, group);
+        console.log(section, group);
     }, [section, group]);
 
     const forSections = [
@@ -53,18 +54,47 @@ const Sections = () => {
                 <h1>
                     Наши секции
                 </h1>
-                <MySelect
-                    parentCallback={setNewSection}
-                    options={forSections}
-                    placeholder={"Выберите секцию"}
-                />
-                {section !== null
-                    ? 
-                    <MySelect
-                        parentCallback={setNewGroup}
-                        options={groups[section]}
-                        placeholder={"Выберите группу"}
+                <div className={classess.selector}>
+                    <Select
+                        value={section}
+                        options={forSections}
+                        onChange={setNewSection}
+                        placeholder={"Выберите секцию"}
+                        isSearchable={false}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                primary25: '#d3d3d3',
+                                primary50: '#d3d3d3',
+                                primary: 'rgb(197, 135, 218)',
+                            }
+                        })}
                     />
+                </div>
+                {section !== null
+                    ?
+                    <div className={classess.selector}>
+                        <Select
+                            value={group}
+                            options={section !== null
+                                ? groups[section["value"]]
+                                : []
+                            }
+                            onChange={setNewGroup}
+                            placeholder={"Выберите группу"}
+                            isSearchable={false}
+                            theme={(theme) => ({
+                                ...theme,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#d3d3d3',
+                                    primary50: '#d3d3d3',
+                                    primary: 'rgb(197, 135, 218)',
+                                }
+                            })}
+                        />
+                    </div>
                     :
                     <div/>
                 }

@@ -6,6 +6,8 @@ import Select from 'react-select';
 
 // import static:
 import classess from './../styles/Sections.module.scss';
+import AboutSection from '../components/AboutSection/AboutSection';
+import png from './../assets/basketball.png';
 
 const Sections = () => {
     useScrollToTop();
@@ -43,6 +45,17 @@ const Sections = () => {
         ],
     };
 
+    const infoAboutSections = {
+        "Баскетбол": {
+            "description": "Спортивная командная игра с мячом, в которой мяч забрасывают руками в кольцо соперника. В баскетбол играют две команды, каждая из которых состоит из пяти полевых игроков (замены не ограничены). Цель каждой команды — забросить мяч в кольцо с сеткой (корзину) соперника и помешать другой команде завладеть мячом и забросить его в свою корзину.",
+            "cost": "200 рублей/занятие"
+        },
+        "Большой Теннис": {
+            "description": "",
+            "cost": ""
+        }
+    }
+
     return (
         <Fragment>
             <Helmet>
@@ -56,6 +69,7 @@ const Sections = () => {
                 </h1>
                 <div className={classess.selector}>
                     <Select
+                        className={classess.mySelect}
                         value={section}
                         options={forSections}
                         onChange={setNewSection}
@@ -74,26 +88,35 @@ const Sections = () => {
                 </div>
                 {section !== null
                     ?
-                    <div className={classess.selector}>
-                        <Select
-                            value={group}
-                            options={section !== null
-                                ? groups[section["value"]]
-                                : []
-                            }
-                            onChange={setNewGroup}
-                            placeholder={"Выберите группу"}
-                            isSearchable={false}
-                            theme={(theme) => ({
-                                ...theme,
-                                colors: {
-                                    ...theme.colors,
-                                    primary25: '#d3d3d3',
-                                    primary50: '#d3d3d3',
-                                    primary: 'rgb(197, 135, 218)',
-                                }
-                            })}
+                    <div className={classess.layout}>
+                        <AboutSection
+                            name={section["value"]}
+                            image={png}
+                            description={infoAboutSections[section["value"]]["description"]}
+                            cost={infoAboutSections[section["value"]]["cost"]}
                         />
+                        <div className={classess.selector}>
+                            <Select
+                                className={classess.mySelect}
+                                value={group}
+                                options={section !== null
+                                    ? groups[section["value"]]
+                                    : []
+                                }
+                                onChange={setNewGroup}
+                                placeholder={"Выберите группу"}
+                                isSearchable={false}
+                                theme={(theme) => ({
+                                    ...theme,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary25: '#d3d3d3',
+                                        primary50: '#d3d3d3',
+                                        primary: 'rgb(197, 135, 218)',
+                                    }
+                                })}
+                            />
+                        </div>
                     </div>
                     :
                     <div/>

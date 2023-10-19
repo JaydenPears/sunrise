@@ -9,7 +9,7 @@
     min-height: calc(100vh - #{$headerHeight} - 10px);
     flex-direction: column;
 
-    width: 100%;
+    max-width: 100vw;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -22,8 +22,25 @@
     }
 
     .selector {
-        margin-top: 15px;
+        margin-top: 30px;
         width: 20rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-bottom: 30px;
+        z-index: 11;
+    }
+
+    .mySelect {
+        width: 100%;
+    }
+
+    .layout {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 

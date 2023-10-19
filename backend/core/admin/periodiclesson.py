@@ -16,6 +16,7 @@ class PeriodicLessonModelAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
         end_date = obj.end_date
         start_date = obj.start_date
+        Lesson.objects.filter(periodic_id=obj.pk).delete()
         with transaction.atomic():
             while start_date <= end_date:
                 if start_date.weekday() == int(form.data['day']):
@@ -27,9 +28,8 @@ class PeriodicLessonModelAdmin(admin.ModelAdmin):
                         'end_time': obj.end_time,
                         'periodic_id': obj.pk,
                     }
-                    print(data)
                     lesson = LessonSerializer(data=data)
                     lesson.is_valid(raise_exception=True)
                     lesson.save()
-                    print(lesson.validated_data)
                 start_date += datetime.timedelta(days=1)
+

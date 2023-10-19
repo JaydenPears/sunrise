@@ -22,7 +22,7 @@ const Sections = () => {
     };
 
     useEffect(() => {
-        console.log(section, group);
+        // console.log(section, group);
     }, [section, group]);
 
     const forSections = [

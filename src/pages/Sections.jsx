@@ -3,10 +3,11 @@ import { React, Fragment, useState, useEffect } from 'react';
 import useScrollToTop from '../hooks/useScrollToTop';
 import { Helmet } from 'react-helmet';
 import Select from 'react-select';
+import MyCalendar from '../components/MyCalendar/MyCalendar';
+import AboutSection from '../components/AboutSection/AboutSection';
 
 // import static:
 import classess from './../styles/Sections.module.scss';
-import AboutSection from '../components/AboutSection/AboutSection';
 import png from './../assets/basketball.png';
 
 const Sections = () => {
@@ -120,6 +121,10 @@ const Sections = () => {
                     </div>
                     :
                     <div/>
+                }
+                {group !== null
+                    ? <MyCalendar />
+                    : <div/>
                 }
             </div>
         </Fragment>

@@ -10,8 +10,8 @@ import moment from 'moment';
 
 // include static:
 import './MyCalendar.css';
-import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
+import './react-big-calendar.css';
 
 const locales = {
 	'ru': ru,
@@ -25,10 +25,49 @@ const localizer = dateFnsLocalizer({
 	locales,
 });
 
+const days = {
+	0: 'ВС',
+	1: 'ПН',
+	2: 'ВТ',
+	3: 'СР',
+	4: 'ЧТ',
+	5: 'ПТ',
+	6: 'СБ',
+};
+
+const months = {
+	0: 'Январь',
+	1: 'Февраль',
+	2: 'Март',
+	3: 'Апрель',
+	4: 'Май',
+	5: 'Июнь',
+	6: 'Июль',
+	7: 'Август',
+	8: 'Сентябрь',
+	9: 'Октябрь',
+	10: 'Ноябрь',
+	11: 'Декабрь',
+};
+
+const formats = {
+	weekdayFormat: (date, culture, localizer) => {
+		return days[date.getDay()];
+	},
+	monthHeaderFormat: (date, culture, localizer) => {
+		return `${months[date.getMonth()]} ${localizer.format(date, 'yyyy')} года`;
+	}
+};
+
 const myEventsList = [
 	{
 		start: moment().toDate(),
 		end: moment().add(0, "days").toDate(),
+		title: "16:30\n-\n19:30",
+	},
+	{
+		start: moment().add(1, "days").toDate(),
+		end: moment().add(1, "days").toDate(),
 		title: "16:30\n-\n19:30",
 	},
 ]
@@ -44,13 +83,22 @@ const MyCalendar = () => {
 
 	return (
 		<Calendar
+			selectable
 			localizer={localizer}
 			events={myEventsList}
 			startAccessor="start"
 			endAccessor="end"
 			views={views}
 			defaultDate={defaultDate}
-			style={{ height: 500 }}
+			style={{ height: "31rem" }}
+			culture='ru'
+			messages={{
+				next: 'Следущий',
+				previous: 'Предыдущий',
+				today: 'Сегодня',
+				month: "Месяц"
+			}}
+			formats={formats}
     	/>
 	)
 };

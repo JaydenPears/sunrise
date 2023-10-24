@@ -1,9 +1,7 @@
 .rbc-calendar {
     width: 23rem;
-    height: 30rem;
     margin-bottom: 50px;
     border: 1px solid #fff;
-    border-radius: 0.5rem;
     text-wrap: wrap;
     text-align: center;
     display: flex;
@@ -24,8 +22,16 @@
     text-wrap: balance;
 }
 
+.rbc-event-content {
+    white-space: pre-wrap;
+}
+
 @media only screen and (min-width: 576px) {
     .rbc-calendar{
         width: 40rem;
     }
+}
+
+.rbc-toolbar-label {
+    margin-top: 10px;
 }

@@ -11,6 +11,8 @@ import photo from './../assets/trainer.jpg';
 
 const Home = () => {
     useScrollToTop();
+    const URL = process.env.REACT_APP_URL;
+
     return (
         <Fragment>
             <Helmet>

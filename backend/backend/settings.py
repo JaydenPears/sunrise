@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import environ
+from .DEFAULTS import DEFAULT_HEADERS
 
 env = environ.Env()
 environ.Env.read_env('.env')
@@ -33,8 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'nested_admin',
-
-    'core'
+    'core',
+    # cors
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -45,6 +47,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # cors
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOW_HEADERS = DEFAULT_HEADERS
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000', # replace with your React app URL
 ]
 
 ROOT_URLCONF = 'backend.urls'

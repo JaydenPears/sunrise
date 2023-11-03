@@ -1,5 +1,6 @@
 // import libs:
-import React from 'react';
+import { React, useState, useEffect } from 'react';
+import axios from 'axios';
 
 // import static & assets:
 import classes from './Posts.module.scss';
@@ -10,20 +11,32 @@ import { Link } from 'react-router-dom';
 
 const test_text = "Здесь будет располагаться некоторый текст, который пользователю будет показываться, как короткое описание";
 
-const locationData = [
-    { id: 1, location: test_text, isFeatured: true, img: bg },
-    { id: 2, location: test_text, isFeatured: true, img: bg },
-    { id: 3, location: test_text, isFeatured: false, img: bg },
-    { id: 4, location: test_text, isFeatured: false, img: bg },
-    { id: 5, location: test_text, isFeatured: false, img: bg },
-    { id: 6, location: test_text, isFeatured: true, img: bg },
-    { id: 7, location: test_text, isFeatured: true, img: bg },
-    { id: 8, location: test_text, isFeatured: true, img: bg },
-    { id: 9, location: test_text, isFeatured: false, img: bg },
-];
-
 const Posts = ({ page }) => {
-    const mapData = !page ? locationData.slice(0, 3) : locationData;
+    const URL = `${process.env.REACT_APP_URL}/posts/`;
+    const [newsData, setNewsData] = useState([]);
+    const [mapData, setMapData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${URL}`, {
+            responseType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).
+        then((response) => {
+            const data = response.data;
+            setNewsData(data);
+        })
+    }, [page]);
+
+    useEffect(() => {
+        if (newsData !== undefined) {
+            setMapData(!page ? newsData.slice(0, 3) : newsData);
+        }
+    }, [newsData]);
+
+    console.log(mapData);
+
     return (
         <div className={classes.container}>
             <div className={`${classes.locations} ${page ? classes.page : ""}`}>
@@ -35,23 +48,23 @@ const Posts = ({ page }) => {
                         }
                     </h2>
                     <div className={classes.locations__content__gallery}>
-                        {mapData.map(({ id, location, isFeatured, img }) => (
+                        {mapData.map(({ id, date, short_description, category, image }) => (
                             <Link to={`/news/${id}`} className={classes.gallery__item} key={id}>
                                 <img
-                                    src={img}
-                                    alt={location}
+                                    src={image}
+                                    alt={short_description}
                                     className={classes.gallery__item__img}
                                 />
                                 <div className={classes.overlay} />
                                 <div className={classes.gallery__item__content}>
                                     
                                     <h2 className={classes.gallery__item__content__location}>
-                                        {`${location.slice(0, 90)}...`}
+                                        {`${short_description}...`}
                                     </h2>
                                 </div>
-                                {isFeatured
-                                    ? <div className={classes.gallery__item__afisha}>Афиша | 23 января 2023 года</div>
-                                    : <div className={classes.gallery__item__news}>Новость | 23 января 2023 года</div>
+                                {category === "afisha"
+                                    ? <div className={classes.gallery__item__afisha}>Афиша | {date}</div>
+                                    : <div className={classes.gallery__item__news}>Новость | {date}</div>
                                 }
                             </Link>
                         ))}

@@ -4,13 +4,19 @@ import React from 'react';
 // import static & assets:
 import classess from './Message.module.scss';
 
-const Message = ({name, post, description, image}) => {
+const Message = ({name, post, description, image, isRight}) => {
     return (
         <div className={classess.container}>
             <div className={classess.message}>
                 <div className={classess.message__content}>
                     <div className={classess.message__card}>
-                        <div className={classess.message__card__title}>
+                        <div
+                            className=
+                            {isRight
+                                ? classess.message__card__title
+                                : classess.message__card__title__right
+                            }
+                        >
                             <div className={classess.message__card__img}>
                                 <img src={image} alt="not alt"/>
                             </div>
@@ -26,7 +32,6 @@ const Message = ({name, post, description, image}) => {
                         <div className={classess.message__card__description}>
                             <p>
                                 { description }
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius earum modi, autem officiis maiores dolorem beatae recusandae odio cumque id. Accusantium in laudantium nulla commodi tempora maxime recusandae iure blanditiis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, voluptates ad delectus tempore eveniet incidunt rerum atque consectetur quod voluptatum omnis consequatur. Maxime inventore laborum obcaecati ad totam, hic nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores veritatis laudantium velit commodi vel numquam, sed fugiat ut. Cumque magni perspiciatis placeat et quaerat fuga vel magnam reiciendis animi sunt!
                             </p>
                         </div>
                     </div>

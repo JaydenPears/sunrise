@@ -1,32 +1,49 @@
 // import libs:
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import useScrollToTop from '../hooks/useScrollToTop';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 // import static:
 import classess from './../styles/Post.module.scss';
-import background from './../assets/background.avif';
 
 const Post = () => {
     useScrollToTop();
-    // const news_id = Number(useLocation().pathname.split('/').pop());
-    const news_title = 'Заголовок'.toUpperCase();
-    const news = `С 4-6 октября в городе Иваново проходит Кубок организаций Госкорпорации «Росатом» по баскетболу 3х3 «Оранжевый атом», где принимает участие один из наших тренеров Ольга Зосименко в составе женской сборной Российского Химико-Технологического Университета им. Д.И.Менделеева \n\nСегодня уже второй день соревнований - стадия плей-офф. В 13:40 состоится игра за выход в полуфинал против команды из Казанского Государственного Энергнетического Университета! Подключайтесь к трансляции, смотрите и болейте!`;
+    const [title, setTitle] = useState('');
+    const [news, setNews] = useState('');
+    const [img, setImg] = useState('');
+    const URL = `${process.env.REACT_APP_URL}`;
+
+    const news_id = Number(useLocation().pathname.split('/').pop());
+
+    useEffect(() => {
+        axios.get(`${URL}/posts/${news_id}/`, {
+            responseType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            const data = response.data;
+            setTitle(data.title);
+            setNews(data.description);
+            setImg(data.image);
+        })
+    }, [news_id, URL]);
 
     return (
         <div className={classess.container}>
             <Helmet>
-                <title>{news_title}</title>
+                <title>{title}</title>
             </Helmet>
             <div className={classess.post}>
                 <img
-                    src={background}
+                    src={img}
                     className={classess.background_picture}
                     alt='must be an alt'
                 />
-                <h1>{ news_title }</h1>
+                <h1>{ title }</h1>
                 <div className={classess.post__description}>
                     <Text style={{fontSize: "1.7rem", textAlign: "left"}}>
                         { news }

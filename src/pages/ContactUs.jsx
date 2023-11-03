@@ -13,7 +13,9 @@ const ContactUs = () => {
                     Связаться с нами
                 </title>
             </Helmet>
-            <Hero isDynamic>Связаться с нами</Hero>
+            <Hero isAbout isDynamic>
+                sunrise@corp.com - напиши нам свой вопрос и мы ответим тебе!
+            </Hero>
         </Fragment>
     );
 };

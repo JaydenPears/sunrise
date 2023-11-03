@@ -26,7 +26,7 @@ const HomePageContent = () => {
     );
 };
 
-const Hero = ({ isDynamic, children }) => {
+const Hero = ({ isDynamic, isAbout, children }) => {
     return (
         <div className={classes.container}>
             <img
@@ -37,7 +37,12 @@ const Hero = ({ isDynamic, children }) => {
             <div className={classes.hero}>
                 <div className={classes.hero__content}>
                     {!isDynamic && <HomePageContent />}
-                    {isDynamic && <h1 className={classes.hero__content__title}>{children}</h1>}
+                    {isDynamic !== isAbout && <h1 className={classes.hero__content__title}>{children}</h1>}
+                    {isAbout &&
+                        <div>
+                            <h1 className={classes.hero__content__title}>Связаться с нами</h1>
+                            <h2>{children}</h2>
+                        </div>}
                 </div>
             </div>
         </div>

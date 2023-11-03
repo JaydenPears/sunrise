@@ -67,6 +67,21 @@
             }
         }
 
+        h2 {
+            text-transform: none;
+            font-size: 1.6rem;
+            color: rgba($white, 0.8);
+            font-weight: 700;
+            margin-bottom: $spacing-sm;
+
+            @include breakpoint(sm) {
+                font-size: 1.75rem;
+            }
+            @include breakpoint(md) {
+                font-size: 2.5rem;
+            }
+        }
+
         &__title_sunrise {
             font-size: 2.4rem;
             color: $light;

@@ -6,10 +6,29 @@ import axios from 'axios';
 import classes from './Posts.module.scss';
 import { BsArrowRight } from 'react-icons/bs';
 
-import bg from './../../assets/background.avif';
 import { Link } from 'react-router-dom';
 
-const test_text = "Здесь будет располагаться некоторый текст, который пользователю будет показываться, как короткое описание";
+const months = {
+    1: "Января",
+    2: "Февраля",
+    3: "Марта",
+    4: "Апреля",
+    5: "Мая",
+    6: "Июня",
+    7: "Июля",
+    8: "Августа",
+    9: "Сентября",
+    10: "Октября",
+    11: "Ноября",
+    12: "Декабря",
+};
+
+const getDate = (date) => {
+    let year = date.split('-')[0];
+    let month = Number(date.split('-')[1]);
+    let day = Number(date.split('-')[2].split('T')[0]);
+    return `${day} ${months[month]} ${year} года`;
+}
 
 const Posts = ({ page }) => {
     const URL = `${process.env.REACT_APP_URL}/posts/`;
@@ -22,18 +41,17 @@ const Posts = ({ page }) => {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).
-        then((response) => {
+        }).then((response) => {
             const data = response.data;
             setNewsData(data);
         })
-    }, [page]);
+    }, [page, URL]);
 
     useEffect(() => {
         if (newsData !== undefined) {
             setMapData(!page ? newsData.slice(0, 3) : newsData);
         }
-    }, [newsData]);
+    }, [newsData, page]);
 
     console.log(mapData);
 
@@ -59,12 +77,18 @@ const Posts = ({ page }) => {
                                 <div className={classes.gallery__item__content}>
                                     
                                     <h2 className={classes.gallery__item__content__location}>
-                                        {`${short_description}...`}
+                                        {`${short_description}`}
                                     </h2>
                                 </div>
                                 {category === "afisha"
-                                    ? <div className={classes.gallery__item__afisha}>Афиша | {date}</div>
-                                    : <div className={classes.gallery__item__news}>Новость | {date}</div>
+                                    ?
+                                    <div className={classes.gallery__item__afisha}>
+                                        Афиша | {getDate(date)}
+                                    </div>
+                                    :
+                                    <div className={classes.gallery__item__news}>
+                                        Новость | {getDate(date)}
+                                    </div>
                                 }
                             </Link>
                         ))}

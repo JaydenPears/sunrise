@@ -13,10 +13,12 @@ class SectionGroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SectionGroup
-        fields = ('title', 'section')
+        fields = ('id', 'title', 'section')
 
 
 class LessonSerializer(serializers.ModelSerializer):
+    group = serializers.StringRelatedField(many=False)
+    section = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = Lesson
@@ -50,7 +52,7 @@ class SectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ('name', 'description', 'image', 'is_free', 'cost', 'is_active', 'personal')
+        fields = ('id', 'name', 'description', 'image', 'is_free', 'cost', 'is_active', 'personal')
 
 
 class PersonalSerializer(serializers.ModelSerializer):

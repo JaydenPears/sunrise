@@ -28,10 +28,18 @@ class SectionGroupViewSet(BaseCommonModelViewSet):
 
 class LessonViewSet(BaseCommonModelViewSet):
     serializer_class = LessonSerializer
-    queryset = Lesson.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().select_related('group', 'section')
+        group = self.request.query_params.get('group')
+        section = self.request.query_params.get('section')
+        if (group is not None) and (section is None):
+            return Lesson.objects.filter(group__pk=group).select_related('group', 'section')
+        elif (group is not None) and (section is not None):
+            return Lesson.objects.filter(group__pk=group, section__pk=section).select_related('group', 'section')
+        elif (section is not None) and (group is None):
+            return Lesson.objects.filter(section__pk=section).select_related('group', 'section')
+        else:
+            return Lesson.objects.all().select_related('group', 'section')
 
 
 class PartnerViewSet(BaseCommonModelViewSet):

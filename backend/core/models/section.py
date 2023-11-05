@@ -16,4 +16,4 @@ class Section(models.Model):
         ordering = ('id',)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'id:{self.id} name:{self.name}'

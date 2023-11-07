@@ -1,9 +1,6 @@
-import datetime
-
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import GenericViewSet
-from django.db import transaction
 from ..models import ClubInfo, SectionGroup, Lesson, Partner, Post, Section, Personal, PeriodicLesson
 from ..serializers import ClubInfoSerializer, SectionGroupSerializer, LessonSerializer, \
     PartnerSerializer, PostSerializer, SectionSerializer, PersonalSerializer, PeriodicLessonSerializer

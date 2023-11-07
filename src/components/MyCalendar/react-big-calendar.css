@@ -25,6 +25,7 @@ button.rbc-input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: 100%;
+  max-width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -806,4 +807,14 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .rbc-calendar{
+    font-size: 0.9rem;
+  }
+
+  .rbc-event-content {
+    font-size: 0.9rem;
+  }
 }

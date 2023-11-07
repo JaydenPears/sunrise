@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import Select from 'react-select';
 import MyCalendar from '../components/MyCalendar/MyCalendar';
 import AboutSection from '../components/AboutSection/AboutSection';
+import axios from 'axios';
 
 // import static:
 import classess from './../styles/Sections.module.scss';
@@ -14,6 +15,55 @@ const Sections = () => {
     useScrollToTop();
     const [section, setSection] = useState(null);
     const [group, setGroup] = useState(null);
+    const [forSections, setForSections] = useState([]);
+    const [forGroups, setForGroups] = useState({});
+    const [infoAboutSections, setInfoAboutSections] = useState({});
+    const URL = `${process.env.REACT_APP_URL}`;
+
+    useEffect(() => {
+        axios.get(`${URL}/sections/`, {
+            responseType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            const data = response.data;
+            console.log(data);
+            let sections = [];
+            let groups = {};
+            let info = {}
+            for (let i in data){
+                sections.push({"value": data[i]["name"], "label": data[i]["name"]});
+                let groups_on_section = [];
+                for (let j in data[i]["groups"]){
+                    groups_on_section.push({"value": data[i]["groups"][j]["title"],
+                    "label": data[i]["groups"][j]["title"]});
+                };
+                groups[data[i]["name"]] = [...groups_on_section];
+                info[data[i]["name"]] = {"description": data[i]["description"],
+                "cost": data[i]["cost"]};
+            };
+            setForSections(sections);
+            setForGroups(groups);
+            setInfoAboutSections(info);
+        })
+    }, [URL]);
+
+    useEffect(() => {
+        if (group){
+            let id_section = 0;
+            let id_group = 0;
+            axios.get(`${URL}/lessons/`, {
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then((response) => {
+                const data = response.data;
+                console.log(data);
+            })
+        }
+    }, [group]);
 
     const setNewSection = (newSection) => {
         setSection(newSection);
@@ -27,35 +77,6 @@ const Sections = () => {
     useEffect(() => {
         // console.log(section, group);
     }, [section, group]);
-
-    const forSections = [
-        {"value": "Баскетбол", "label": "Баскетбол"},
-        {"value": "Большой Теннис", "label": "Большой Теннис"},
-    ];
-
-    const groups = {
-        "Баскетбол": [
-            {"value": "Баскетбол - Junior", "label": "Баскетбол - Junior"},
-            {"value": "Баскетбол - Middle", "label": "Баскетбол - Middle"},
-            {"value": "Баскетбол - Senior", "label": "Баскетбол - Senior"},
-        ],
-        "Большой Теннис": [
-            {"value": "Большой Теннис - Junior", "label": "Большой Теннис - Junior"},
-            {"value": "Большой Теннис - Middle", "label": "Большой Теннис - Middle"},
-            {"value": "Большой Теннис - Senior", "label": "Большой Теннис - Senior"},
-        ],
-    };
-
-    const infoAboutSections = {
-        "Баскетбол": {
-            "description": "Спортивная командная игра с мячом, в которой мяч забрасывают руками в кольцо соперника. В баскетбол играют две команды, каждая из которых состоит из пяти полевых игроков (замены не ограничены). Цель каждой команды — забросить мяч в кольцо с сеткой (корзину) соперника и помешать другой команде завладеть мячом и забросить его в свою корзину.",
-            "cost": "200 рублей/занятие"
-        },
-        "Большой Теннис": {
-            "description": "",
-            "cost": ""
-        }
-    }
 
     return (
         <Fragment>
@@ -101,7 +122,7 @@ const Sections = () => {
                                 className={classess.mySelect}
                                 value={group}
                                 options={section !== null
-                                    ? groups[section["value"]]
+                                    ? forGroups[section["value"]]
                                     : []
                                 }
                                 onChange={setNewGroup}

@@ -23,7 +23,7 @@ class SectionGroupViewSet(BaseCommonModelViewSet):
     queryset = SectionGroup.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('section')
+        return super().get_queryset().prefetch_related('section', 'groups')
 
 
 class LessonViewSet(BaseCommonModelViewSet):
@@ -57,7 +57,7 @@ class SectionViewSet(BaseCommonModelViewSet):
     queryset = Section.objects.all()
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('personal')
+        return super().get_queryset().prefetch_related('personal', 'groups')
 
 
 class PersonalViewSet(BaseCommonModelViewSet):

@@ -72,7 +72,7 @@ const myEventsList = [
 	},
 ]
 
-const MyCalendar = () => {
+const MyCalendar = ({}) => {
 	const { defaultDate, views } = useMemo(
 		() => ({
 		  defaultDate: moment().toDate(),

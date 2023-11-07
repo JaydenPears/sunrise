@@ -26,6 +26,15 @@
     white-space: pre-wrap;
 }
 
+.rbc-day-bg {
+    border: 0.1px solid;
+    margin: 0;
+}
+
+.rbc-row-bg {
+    margin: 0;
+}
+
 @media only screen and (min-width: 576px) {
     .rbc-calendar{
         width: 40rem;

@@ -70,7 +70,7 @@ const Posts = ({ page }) => {
                             <Link to={`/news/${id}`} className={classes.gallery__item} key={id}>
                                 <img
                                     src={image}
-                                    alt={short_description}
+                                    alt={"must be an alt"}
                                     className={classes.gallery__item__img}
                                 />
                                 <div className={classes.overlay} />

@@ -16,13 +16,19 @@ class SectionGroupSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'section')
 
 
+class ShortSectionGroupSerializer(SectionGroupSerializer):
+    class Meta:
+        model = SectionGroup
+        fields = ('id', 'title',)
+
+
 class LessonSerializer(serializers.ModelSerializer):
-    group = serializers.StringRelatedField(many=False)
-    section = serializers.StringRelatedField(many=False)
+    start = serializers.DateField(source='date')
+    end = serializers.DateField(source='date')
 
     class Meta:
         model = Lesson
-        fields = ('group', 'section', 'date', 'start_time', 'end_time', 'periodic_id')
+        fields = ('title', 'start', 'end',)
 
 
 class PeriodicLessonSerializer(serializers.ModelSerializer):
@@ -49,10 +55,11 @@ class PostSerializer(serializers.ModelSerializer):
 
 class SectionSerializer(serializers.ModelSerializer):
     personal = serializers.StringRelatedField(many=True)
+    groups = ShortSectionGroupSerializer(many=True)
 
     class Meta:
         model = Section
-        fields = ('id', 'name', 'description', 'image', 'is_free', 'cost', 'is_active', 'personal')
+        fields = ('id', 'name', 'description', 'image', 'is_free', 'cost', 'is_active', 'personal', 'groups')
 
 
 class PersonalSerializer(serializers.ModelSerializer):

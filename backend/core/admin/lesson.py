@@ -5,7 +5,7 @@ from ..models import Lesson
 
 @admin.register(Lesson)
 class LessonModelAdmin(admin.ModelAdmin):
-    list_display = ('group', 'section', 'date', 'start_time', 'end_time', 'periodic_id')
+    list_display = ('group', 'section', 'date', 'start', 'end', 'periodic_id')
     fields = list_filter = list_display
     search_fields = ('date', )
 

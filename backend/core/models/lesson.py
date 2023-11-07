@@ -10,8 +10,8 @@ class Lesson(models.Model):
     group = models.ForeignKey(to=SectionGroup, related_name='lessons', null=True, on_delete=models.SET_NULL)
     section = models.ForeignKey(to=Section, related_name='lessons', null=True, on_delete=models.SET_NULL)
     date = models.DateField(_('Date'))
-    start_time = models.TimeField(_('Start time'))
-    end_time = models.TimeField(_('End time'))
+    start = models.TimeField(_('Start time'))
+    end = models.TimeField(_('End time'))
 
     periodic_id = models.ForeignKey(to=PeriodicLesson, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -20,5 +20,14 @@ class Lesson(models.Model):
         verbose_name_plural = _('Lessons')
         ordering = ('id',)
 
+    def get_start_time(self):
+        return self.start.strftime("%H:%M")
+
+    def get_end_time(self):
+        return self.end.strftime("%H:%M")
+
     def __str__(self):
         return f'Group {self.group}, Date: {self.date}'
+
+    def title(self):
+        return f'{self.get_start_time()}\n-\n{self.get_end_time()}'

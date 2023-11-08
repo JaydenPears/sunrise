@@ -5,6 +5,7 @@ from ..models import Section
 
 @admin.register(Section)
 class SectionModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'image', 'is_free', 'cost', 'is_active')
-    fields = list_display
+    list_display = ('id', 'name', 'description', 'image', 'is_free', 'cost', 'is_active')
+    readonly_fields = ['id']
+    fields = ('id', 'name', 'description', 'image', 'is_free', 'cost', 'is_active')
 

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Section(models.Model):
     name = models.CharField(_('Name'), max_length=100)
-    description = models.CharField(_('Description'), max_length=300)
+    description = models.TextField(_('Description'), max_length=300)
     image = models.ImageField(_('Image'), blank=True, upload_to='images/')
     is_free = models.BooleanField(_('Is free?'), default=True)
     cost = models.CharField(_('Cost'), max_length=100, blank=True)
@@ -16,4 +16,4 @@ class Section(models.Model):
         ordering = ('id',)
 
     def __str__(self):
-        return f'id:{self.id} name:{self.name}'
+        return f'{self.name}'

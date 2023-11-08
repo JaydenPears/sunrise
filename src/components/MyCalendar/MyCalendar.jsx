@@ -59,20 +59,7 @@ const formats = {
 	}
 };
 
-const myEventsList = [
-	{
-		start: moment().toDate(),
-		end: moment().add(0, "days").toDate(),
-		title: "16:30\n-\n19:30",
-	},
-	{
-		start: moment().add(1, "days").toDate(),
-		end: moment().add(1, "days").toDate(),
-		title: "16:30\n-\n19:30",
-	},
-]
-
-const MyCalendar = ({}) => {
+const MyCalendar = ({myEventsList}) => {
 	const { defaultDate, views } = useMemo(
 		() => ({
 		  defaultDate: moment().toDate(),

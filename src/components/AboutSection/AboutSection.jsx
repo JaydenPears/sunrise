@@ -23,9 +23,16 @@ const AboutSection = ({name, description, cost, image}) => {
                                 { description }
                             </p>
                             <div className={classess.cost}>
-                                <h2>
-                                    Стоимость: <br/>{ cost }
-                                </h2>
+                                {cost
+                                    ?
+                                    <h2 style={{textAlign:"center"}}>
+                                        Стоимость: { cost }₽ за занятие.
+                                    </h2>
+                                    :
+                                    <h2>
+                                        Занятия проводятся бесплатно.
+                                    </h2>
+                                }
                             </div>
                         </div>
                     </div>

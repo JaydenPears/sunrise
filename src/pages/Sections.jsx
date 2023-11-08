@@ -13,11 +13,19 @@ import png from './../assets/basketball.png';
 
 const Sections = () => {
     useScrollToTop();
+
+    const [id_section, setIDSection] = useState(null);
+    const [id_group, setIDGroup] = useState(null);
+
     const [section, setSection] = useState(null);
     const [group, setGroup] = useState(null);
+
     const [forSections, setForSections] = useState([]);
     const [forGroups, setForGroups] = useState({});
+
     const [infoAboutSections, setInfoAboutSections] = useState({});
+    const [lessons, setLessons] = useState([]);
+
     const URL = `${process.env.REACT_APP_URL}`;
 
     useEffect(() => {
@@ -33,11 +41,22 @@ const Sections = () => {
             let groups = {};
             let info = {}
             for (let i in data){
-                sections.push({"value": data[i]["name"], "label": data[i]["name"]});
+                sections.push(
+                    {
+                        "value": data[i]["name"],
+                        "label": data[i]["name"],
+                        "id": data[i]["id"],
+                    }
+                );
                 let groups_on_section = [];
                 for (let j in data[i]["groups"]){
-                    groups_on_section.push({"value": data[i]["groups"][j]["title"],
-                    "label": data[i]["groups"][j]["title"]});
+                    groups_on_section.push(
+                        {
+                            "value": data[i]["groups"][j]["title"],
+                            "label": data[i]["groups"][j]["title"],
+                            "id": data[i]["groups"][j]["id"],
+                        }
+                    );
                 };
                 groups[data[i]["name"]] = [...groups_on_section];
                 info[data[i]["name"]] = {"description": data[i]["description"],
@@ -49,29 +68,31 @@ const Sections = () => {
         })
     }, [URL]);
 
+    console.log(id_group);
+
     useEffect(() => {
         if (group){
-            let id_section = 0;
-            let id_group = 0;
-            axios.get(`${URL}/lessons/`, {
+            axios.get(`${URL}/lessons/?section=${id_section}&group=${id_group}`, {
                 responseType: 'json',
                 headers: {
                     'Content-Type': 'application/json',
                 }
             }).then((response) => {
                 const data = response.data;
-                console.log(data);
+                setLessons(data);
             })
         }
-    }, [group]);
+    }, [group, URL, id_section, id_group]);
 
     const setNewSection = (newSection) => {
         setSection(newSection);
         setGroup(null);
+        setIDSection(newSection["id"]);
     };
 
     const setNewGroup = (newGroup) => {
         setGroup(newGroup);
+        setIDGroup(newGroup["id"]);
     };
 
     useEffect(() => {
@@ -144,8 +165,12 @@ const Sections = () => {
                     <div/>
                 }
                 {group !== null
-                    ? <MyCalendar />
-                    : <div/>
+                    ?
+                    <MyCalendar
+                        myEventsList={lessons}
+                    />
+                    :
+                    <div/>
                 }
             </div>
         </Fragment>

@@ -84,7 +84,7 @@
 
         &__title_sunrise {
             font-size: 2.4rem;
-            color: $light;
+            color: $bg;
             font-weight: 700;
             margin-bottom: $spacing-sm;
 
@@ -99,7 +99,7 @@
         &__tagline {
             font-size: 1.6rem;
             font-weight: 700;
-            color: rgba($light, 0.95);
+            color: rgba($bg, 0.95);
             text-align: center;
             // font-style: italic;
             margin-bottom: $spacing-md;
@@ -114,7 +114,7 @@
 
         &__description {
             text-transform: none;
-            color: $light;
+            color: $bg;
             width: 100%;
             font-size: 1rem;
             margin-bottom: $spacing-lg;

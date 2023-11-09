@@ -1,7 +1,7 @@
 @import "./../../styles/variables.scss";
 
 .container {
-    background: $light;
+    background: $bg;
     position: relative;
     z-index: 10;
     margin: 0 auto;
@@ -43,6 +43,7 @@
         border: 2px solid $white;
         transition: 0.3s ease all;
         box-shadow: $boxShadow;
+        background-color: $light;
 
         &__img {
             width: auto;

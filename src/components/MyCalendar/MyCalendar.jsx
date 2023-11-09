@@ -11,7 +11,7 @@ import moment from 'moment';
 // include static:
 import './MyCalendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
-import './react-big-calendar.css';
+import './react-big-calendar.scss';
 
 const locales = {
 	'ru': ru,
@@ -70,7 +70,7 @@ const MyCalendar = ({myEventsList}) => {
 
 	return (
 		<Calendar
-			selectable
+			selectable={false}
 			localizer={localizer}
 			events={myEventsList}
 			startAccessor="start"

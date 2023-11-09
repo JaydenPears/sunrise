@@ -95,10 +95,6 @@ const Sections = () => {
         setIDGroup(newGroup["id"]);
     };
 
-    useEffect(() => {
-        // console.log(section, group);
-    }, [section, group]);
-
     return (
         <Fragment>
             <Helmet>

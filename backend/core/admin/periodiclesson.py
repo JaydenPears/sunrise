@@ -21,15 +21,13 @@ class PeriodicLessonModelAdmin(admin.ModelAdmin):
             while start_date <= end_date:
                 if start_date.weekday() == int(form.data['day']):
                     data = {
-                        'group': obj.group.pk,
-                        'section': obj.section.pk,
+                        'group': obj.group,
+                        'section': obj.section,
                         'date': start_date,
-                        'start_time': obj.start_time,
-                        'end_time': obj.end_time,
-                        'periodic_id': obj.pk,
+                        'start': obj.start_time,
+                        'end': obj.end_time,
+                        'periodic_id': obj,
                     }
-                    lesson = LessonSerializer(data=data)
-                    lesson.is_valid(raise_exception=True)
-                    lesson.save()
+                    lesson = Lesson(**data).save()
                 start_date += datetime.timedelta(days=1)
 

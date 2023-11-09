@@ -7,7 +7,7 @@ import Message from './../components/Message/Message';
 import axios from 'axios';
 
 // import static:
-import './../styles/AboutUs.module.scss';
+import classess from './../styles/AboutUs.module.scss';
 
 const LearnMore = () => {
     useScrollToTop();
@@ -27,7 +27,7 @@ const LearnMore = () => {
     }, [URL]);
 
     return (
-        <Fragment>
+        <Fragment className={classess.container}>
             <Helmet>
                 <title>
                     Информация о нас

@@ -1,3 +1,13 @@
+@import "./../../styles/variables.scss";
+
+.container {
+    background: $bg;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+
 .rbc-btn {
   color: inherit;
   font: inherit;
@@ -250,7 +260,7 @@ button.rbc-input::-moz-focus-inner {
           box-shadow: none;
   margin: 0;
   padding: 2px 5px;
-  background-color: rgb(200, 82, 240);
+  background-color: $light;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
@@ -262,10 +272,10 @@ button.rbc-input::-moz-focus-inner {
   pointer-events: none;
 }
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: rgb(200, 82, 240);
+  background-color: $light;
 }
 .rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {
-  outline: 5px auto rgb(200, 82, 240);
+  outline: 5px auto $light;
 }
 
 .rbc-event-label {

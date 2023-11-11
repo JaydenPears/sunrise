@@ -34,19 +34,25 @@ const LearnMore = () => {
                 </title>
             </Helmet>
             <Hero isDynamic>Подробнее о нас</Hero>
-            {personal.map((_, index) => (
-                <Message
-                    isRight={index % 2 === 0
-                        ? true
-                        : false
-                    }
-                    key={index}
-                    name={personal[index].fio}
-                    post={personal[index].job[0]}
-                    description={personal[index].description}
-                    image={personal[index].image}
-                />
-            ))}
+            <div className={classess.posts_container}>
+                {personal.map((_, index) => (
+                    <Message
+                        isFirst={index === 0
+                            ? true
+                            : false
+                        }
+                        isRight={index % 2 === 0
+                            ? true
+                            : false
+                        }
+                        key={index}
+                        name={personal[index].fio}
+                        post={personal[index].job[0]}
+                        description={personal[index].description}
+                        image={personal[index].image}
+                    />
+                ))}
+            </div>
         </Fragment>
     );
 };

@@ -7,10 +7,17 @@
     margin: 0 auto;
 }
 
+.container__first {
+    background: $bg;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
 .message {
     width: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,8 +70,9 @@
                 letter-spacing: $letterSpacing;
                 font-weight: 900;
                 position: relative;
-                text-decoration: underline;
-                text-decoration-color: $primary;
+                text-decoration: none;
+                line-height: 1.2;
+                border-bottom: 2px $white solid;
             }
 
             @media only screen and (max-width: 576px) {
@@ -79,7 +87,7 @@
         }
         
         img {
-            border: 2px solid $primary;
+            border: 2px solid $white;
             border-radius: 50%;
             height: 8rem;
             margin-right: 5px;

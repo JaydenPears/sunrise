@@ -6,9 +6,13 @@ $font: 'Montserrat', sans-serif;
 // colors
 
 // Никита, трогай только следующие три
-$bg: #f4f4f8;
-$light: #c3b9e3;
-$primary: rgb(197,135,218);
+// $bg: #f4f4f8;
+// $light: #c3b9e3;
+// $primary: rgb(197,135,218);
+
+$bg: #EDEDF4;
+$light: #D4C1EC;
+$primary: #f7854d;
 
 $light2: #efe9e6;
 $lightLine: #dbe6ed;
@@ -39,8 +43,7 @@ $spacing-xl: 64px;
 $headerHeight: 90px;
 
 // box shadow
-$boxShadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.2),
-    0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.05);
+$boxShadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
 // breakpoints
 @mixin breakpoint($point) {

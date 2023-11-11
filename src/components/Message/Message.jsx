@@ -4,9 +4,12 @@ import React from 'react';
 // import static & assets:
 import classess from './Message.module.scss';
 
-const Message = ({name, post, description, image, isRight}) => {
+const Message = ({name, post, description, image, isRight, isFirst}) => {
     return (
-        <div className={classess.container}>
+        <div className={isFirst
+            ? classess.container__first
+            : classess.container
+        }>
             <div className={classess.message}>
                 <div className={classess.message__content}>
                     <div className={classess.message__card}>

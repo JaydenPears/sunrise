@@ -102,29 +102,33 @@ const Sections = () => {
                     Наши секции
                 </title>
             </Helmet>
-            <div className={classess.container}>
+            <div className={classess.h}>
                 <h1>
                     Наши секции
                 </h1>
-                <div className={classess.selector}>
-                    <Select
-                        className={classess.mySelect}
-                        value={section}
-                        options={forSections}
-                        onChange={setNewSection}
-                        placeholder={"Выберите секцию"}
-                        isSearchable={false}
-                        theme={(theme) => ({
-                            ...theme,
-                            colors: {
-                                ...theme.colors,
-                                primary25: '#d3d3d3',
-                                primary50: '#d3d3d3',
-                                primary: 'rgb(197, 135, 218)',
-                            }
-                        })}
-                    />
-                </div>
+            </div>
+            <div className={classess.container}>
+                <div className={classess.sections}>
+                    <div className={classess.selector}>
+                        <Select
+                            className={classess.mySelect}
+                            value={section}
+                            options={forSections}
+                            onChange={setNewSection}
+                            placeholder={"Выберите секцию"}
+                            isSearchable={false}
+                            theme={(theme) => ({
+                                ...theme,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#d3d3d3',
+                                    primary50: '#d3d3d3',
+                                    primary: 'rgb(197, 135, 218)',
+                                }
+                            })}
+                        />
+                    </div>
+                
                 {section !== null
                     ?
                     <div className={classess.layout}>
@@ -134,40 +138,42 @@ const Sections = () => {
                             description={infoAboutSections[section["value"]]["description"]}
                             cost={infoAboutSections[section["value"]]["cost"]}
                         />
-                        <div className={classess.selector}>
-                            <Select
-                                className={classess.mySelect}
-                                value={group}
-                                options={section !== null
-                                    ? forGroups[section["value"]]
-                                    : []
-                                }
-                                onChange={setNewGroup}
-                                placeholder={"Выберите группу"}
-                                isSearchable={false}
-                                theme={(theme) => ({
-                                    ...theme,
-                                    colors: {
-                                        ...theme.colors,
-                                        primary25: '#d3d3d3',
-                                        primary50: '#d3d3d3',
-                                        primary: 'rgb(197, 135, 218)',
-                                    }
-                                })}
-                            />
-                        </div>
                     </div>
                     :
                     <div/>
                 }
-                {group !== null
-                    ?
+                </div>
+                <div className={classess.groups}>
+                    <div className={classess.selector}>
+                        <Select
+                            isDisabled={section === null
+                                ? true
+                                : false
+                            }
+                            className={classess.mySelect}
+                            value={group}
+                            options={section !== null
+                                ? forGroups[section["value"]]
+                                : []
+                            }
+                            onChange={setNewGroup}
+                            placeholder={"Выберите группу"}
+                            isSearchable={false}
+                            theme={(theme) => ({
+                                ...theme,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: '#d3d3d3',
+                                    primary50: '#d3d3d3',
+                                    primary: 'rgb(197, 135, 218)',
+                                }
+                            })}
+                        />
+                    </div>
                     <MyCalendar
                         myEventsList={lessons}
                     />
-                    :
-                    <div/>
-                }
+                </div>
             </div>
         </Fragment>
     );

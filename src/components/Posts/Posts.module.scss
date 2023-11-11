@@ -124,7 +124,7 @@
                 &__afisha {
                     font-weight: 500;
                     position: absolute;
-                    background: rgba($primary, 1);
+                    background: $primary;
                     color: $white;
                     top: -12px;
                     left: $spacing-sm;
@@ -140,7 +140,7 @@
                 &__news {
                     font-weight: 500;
                     position: absolute;
-                    background: $orange;
+                    background: $white;
                     color: $dark;
                     top: -12px;
                     left: $spacing-sm;

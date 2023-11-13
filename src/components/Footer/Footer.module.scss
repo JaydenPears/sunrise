@@ -8,6 +8,18 @@
     position: relative;
 }
 
+a {
+    text-decoration: none;
+    color: $white;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    display: inline-block;
+}
+
+a:hover {
+    color: $primary;
+}
+
 .footer {
     padding: 0px 0 0px 0;
     width: 1000px;
@@ -30,7 +42,7 @@
             letter-spacing: $letterSpacing;
             margin-bottom: $spacing-md;
         }
-        span {
+        span, a {
             color: $white;
             font-size: 1.1rem;
             margin-top: $spacing-md;

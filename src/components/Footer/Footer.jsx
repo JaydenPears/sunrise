@@ -24,7 +24,7 @@ const Footer = () => {
                         ))}
                     </ul>
                     <span className={classes.footer__base__year}>
-                        Спортивный клуб "Восход"&nbsp;&copy;&nbsp;{new Date().getFullYear()}
+                        <p>Спортивный клуб "Восход"&nbsp;&copy;&nbsp;{new Date().getFullYear()} Made by <a href="https://t.me/user_is_none">Vladimir Chernov</a> & <Link to="https://t.me/n1kkj">Nikita Lakin</Link></p>
                     </span>
                 </div>
             </footer>

@@ -4,7 +4,7 @@ import React from 'react';
 // import static & assets:
 import classess from './AboutSection.module.scss';
 
-const AboutSection = ({name, description, cost, image}) => {
+const AboutSection = ({name, description, image}) => {
     return (
         <div className={classess.container}>
             <div className={classess.message}>
@@ -22,18 +22,6 @@ const AboutSection = ({name, description, cost, image}) => {
                             <p>
                                 { description }
                             </p>
-                            <div className={classess.cost}>
-                                {cost
-                                    ?
-                                    <h2 style={{textAlign:"center"}}>
-                                        Стоимость: { cost }₽ за занятие.
-                                    </h2>
-                                    :
-                                    <h2>
-                                        Занятия проводятся бесплатно.
-                                    </h2>
-                                }
-                            </div>
                         </div>
                     </div>
                 </div>

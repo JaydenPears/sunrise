@@ -87,6 +87,7 @@ const Sections = () => {
     const setNewSection = (newSection) => {
         setSection(newSection);
         setGroup(null);
+        setLessons([]);
         setIDSection(newSection["id"]);
     };
 
@@ -136,7 +137,6 @@ const Sections = () => {
                             name={section["value"]}
                             image={png}
                             description={infoAboutSections[section["value"]]["description"]}
-                            cost={infoAboutSections[section["value"]]["cost"]}
                         />
                     </div>
                     :

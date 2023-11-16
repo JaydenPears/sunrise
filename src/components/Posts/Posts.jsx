@@ -53,8 +53,6 @@ const Posts = ({ page }) => {
         }
     }, [newsData, page]);
 
-    console.log(mapData);
-
     return (
         <div className={classes.container}>
             <div className={`${classes.locations} ${page ? classes.page : ""}`}>
